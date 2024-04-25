@@ -1,7 +1,7 @@
-# 在 Python 3 中，你可以使用 urllib 或 requests 库来进行常见的 HTTP 请求操作，包括 GET、POST、PUT 和 DELETE 请求。
+# 在 Python 3 中，你可以使用 Python urllib 模块 或 requests 库来进行常见的 HTTP 请求操作，包括 GET、POST、PUT 和 DELETE 请求。
 # 在 Python 3 中进行 GET、POST、PUT 和 DELETE 请求，包括无参数和有参数的情况：
 
-# 以下是采用：Python 3 urllib
+# 以下是采用：Python 3 Python urllib 模块
 
 import urllib.request
 import urllib.parse

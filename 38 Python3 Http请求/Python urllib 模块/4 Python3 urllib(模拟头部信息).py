@@ -11,6 +11,6 @@ header = {
 request = urllib.request.Request(url_all,headers=header)
 reponse = urllib.request.urlopen(request).read()
 
-fh = open("./urllib_test_runoob_search.html","wb")  # 将文件写入到当前目录中
+fh = open("urllib_test_runoob_search.html", "wb")  # 将文件写入到当前目录中
 fh.write(reponse)
 fh.close()

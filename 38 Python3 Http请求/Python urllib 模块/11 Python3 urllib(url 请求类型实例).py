@@ -4,7 +4,7 @@ import json
 import unittest
 
 
-# Python3 urllib get、post请求类型实例 单元测试
+# Python3 Python urllib 模块 get、post请求类型实例 单元测试
 class MyTestCase(unittest.TestCase):
 
     # =================get 请求实例

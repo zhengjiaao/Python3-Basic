@@ -1,4 +1,4 @@
-# urllib.robotparser 用于解析 robots.txt 文件。
+# Python urllib 模块.robotparser 用于解析 robots.txt 文件。
 
 
 import urllib.robotparser
