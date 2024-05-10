@@ -4,13 +4,23 @@ from . import views
 from . import views_http_file
 from . import views_http
 from . import views_user
+from . import views_swagger3
 
 # 静态资源
 from django.conf import settings
 from django.conf.urls.static import static
 
-# 配置路由
+# swagger3
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+
 urlpatterns = [
+    # swagger3 路径配置
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+
+
+    # 其他URL配置...
     path("index", views.index, name="index"),
     path("example", views.example, name="example"),
     path("hello", views.hello, name="hello"),
@@ -41,4 +51,9 @@ urlpatterns = [
     path('user/login/', views_user.login_view, name='login'),
     path('user/logout/', views_user.logout_view, name='logout'),
     path('user/profile/', views_user.profile, name='profile'),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+    # swagger3
+    path('test/get/1', views_swagger3.MyAPIView.my_api_view1, name='my-api1'),
+    path('test/get/2', views_swagger3.MyAPIView.my_api_view2, name='my-api2'),
+
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

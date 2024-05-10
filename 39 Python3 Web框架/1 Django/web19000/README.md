@@ -380,3 +380,66 @@ TEMPLATES = [
 在 TEMPLATES 列表中，设置 'APP_DIRS': True，以便 Django 在应用程序的 templates
 目录中查找模板。如果您的模板位于其他目录，可以通过 'DIRS' 设置添加这些目录的路径。
 
+## Django配置swagger3
+
+1. 安装 drf-spectacular 库：
+
+```shell
+pip install drf-spectacular
+```
+
+2. 在 Django 项目的设置文件（settings.py）中添加以下配置：
+
+```python
+INSTALLED_APPS = [
+    # Other installed apps
+    'drf_spectacular',
+    'rest_framework',
+]
+
+# 配置 REST framework
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# 配置 drf-spectacular
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'API Documentation',
+    'DESCRIPTION': 'Your API description',
+    # 其他配置选项...
+}
+```
+
+3. 在项目的 URL 配置文件（urls.py）中添加以下代码：
+
+```python
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+
+urlpatterns = [
+    # 其他 URL 配置...
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+]
+```
+
+4. 在您的 API 视图中，使用 @extend_schema 装饰器来配置 Swagger 文档。例如：
+
+```python
+from drf_spectacular.utils import extend_schema
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+
+@api_view(['GET'])
+@extend_schema(
+    description='This is the API description',
+    responses={200: 'Success response'},
+)
+def my_api_view(request):
+    # Your code here
+    return Response('Success')
+```
+
+5. 运行您的 Django 项目，并访问 /api/schema/swagger-ui/ 或 /api/schema/redoc/，您将看到相应的 Swagger UI 或 ReDoc
+   页面，其中包含了您配置的 API 文档信息。

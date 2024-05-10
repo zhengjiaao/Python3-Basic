@@ -2,8 +2,17 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 import json
 
+from drf_spectacular.utils import extend_schema
+from rest_framework.decorators import api_view
+
 
 # 无参 GET 请求
+@api_view(['GET'])
+@extend_schema(  # todo 无效
+    tags=['Module 1'],
+    description='This is the API description',
+    responses={200: 'Success response'},
+)
 def get(request):
     if request.method == 'GET':
         # 处理 GET 请求逻辑

@@ -43,7 +43,27 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webapp',
+    'drf_spectacular',
+    'rest_framework',
 ]
+
+# 配置 REST framework
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# 配置 drf-spectacular
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'API Documentation',
+    'DESCRIPTION': 'Your API description',
+    'TAGS_SORTER': 'alpha',  # 根据需要调整排序方式
+    'TAGS': [  # 根据需要添加或调整标签
+        {'name': 'Module 1', 'description': 'Module 1 APIs'},
+        {'name': 'Module 2', 'description': 'Module 2 APIs'},
+    ],
+    # 其他配置选项...
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
