@@ -34,6 +34,7 @@ def hello_world():
 运行服务
 
 ```shell
+# 开发测试环境启动方式，非正式部署启动方式
 flask --app hello.py run
 
 http://127.0.0.1:5000
@@ -43,6 +44,42 @@ debug 模式运行服务
 
 ```shell
 flask --app hello run --debug
+```
+
+## 部署 Flask 应用程序使用生产级 WSGI 服务器
+
+1. 安装生产级 WSGI 服务器，例如 Gunicorn 或 uWSGI。您可以使用 pip 进行安装：
+
+```shell
+# 例如：Gunicorn
+pip install gunicorn
+```
+
+2. 为 Flask 应用程序创建 WSGI 入口点。在与 app.py 脚本相同的目录中，创建一个新文件（例如 wsgi.py），并写入以下内容：
+
+```python
+from app import app
+
+if __name__ == '__main__':
+    app.run()
+```
+
+将 app 替换为您在 app.py 中实际创建的 Flask 应用程序实例。
+
+3. 使用应用程序启动 WSGI 服务器,运行以下命令：
+
+```shell
+gunicorn wsgi:app
+```
+
+这将使用 Gunicorn 服务器启动您的 Flask 应用程序。注意：wsgi:app 参数告诉 Gunicorn 使用 wsgi.py 文件中的 app 对象。
+
+4. 访问
+
+通过 WSGI 服务器提供的适当地址和端口访问 Flask 应用程序。默认情况下，Gunicorn 运行在 http://localhost:8000。
+
+```text
+http://localhost:8000
 ```
 
 ## 其他示例
@@ -316,8 +353,8 @@ def index():
     return resp
 ```
 
-
 ### 重定向和错误
+
 ```python
 from flask import abort, redirect, url_for
 
@@ -336,6 +373,7 @@ def login():
 ```python
 from flask import render_template
 
+
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('page_not_found.html'), 404
@@ -346,6 +384,7 @@ def page_not_found(error):
 ```python
 from flask import render_template
 
+
 @app.errorhandler(404)
 def not_found(error):
     return render_template('error.html'), 404
@@ -353,6 +392,7 @@ def not_found(error):
 
 ```python
 from flask import make_response
+
 
 @app.errorhandler(404)
 def not_found(error):
@@ -365,6 +405,7 @@ def not_found(error):
 
 编写API时，常见的响应格式是JSON。
 如果您从视图返回dict或列表，它将被转换为JSON响应。
+
 ```python
 @app.route("/me")
 def me_api():
@@ -374,6 +415,7 @@ def me_api():
         "theme": user.theme,
         "image": url_for("user_image", filename=user.image),
     }
+
 
 @app.route("/users")
 def users_api():
@@ -391,11 +433,13 @@ from flask import session
 # Set the secret key to some random bytes. Keep this really secret!
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
+
 @app.route('/')
 def index():
     if 'username' in session:
         return f'Logged in as {session["username"]}'
     return 'You are not logged in'
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -409,6 +453,7 @@ def login():
         </form>
     '''
 
+
 @app.route('/logout')
 def logout():
     # remove the username from the session if it's there
@@ -417,6 +462,7 @@ def logout():
 ```
 
 如何生成一个随机的秘钥
+
 ```shell
 python -c 'import secrets; print(secrets.token_hex())'
 ```
