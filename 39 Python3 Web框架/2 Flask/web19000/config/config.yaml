@@ -1,0 +1,12 @@
+# config.yaml
+
+APP_NAME: My Flask App
+
+app:
+  name: My Flask App
+  debug: true
+
+api:
+  version: 1.0
+  title: API with Flask-RESTx
+  description: Example API using Flask-RESTx
