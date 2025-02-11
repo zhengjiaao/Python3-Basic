@@ -33,6 +33,7 @@ uwsgi --http :9090 --wsgi-file foobar.py
 | Flask   | [flask](https://flask.palletsprojects.com/en)    | 推荐  | Flask 框架是python中的一个轻量级的前后端开发框架，flask只提供基础的功能，其他的功能需要安装各种插件。大型工程也可以使用flask框架，但是就需要安装很多插件。                             | Flask的缺点是它相对较轻，缺少一些常用的工具和插件，需要自己去寻找和配置。同时，Flask的灵活性也可能导致代码结构不够清晰，需要开发者自己规范。 |
 | Tornado | [tornado](https://www.tornadoweb.org/en/stable/) | 不推荐 | Tornado 是一个Python web框架和异步网络库，通过使用非阻塞网络I/O, Tornado可以扩展到数以万计的开放连接，非常适合长轮询、WebSockets和其他需要与每个用户进行长时间连接的应用程序。          | Tornado的优点在于它的高性能和并发处理能力，适合处理大量的请求。Tornado的缺点在于它相对较难学习，需要一定的异步编程经验。         |
 | Pyramid | [pyramid](https://github.com/Pylons/pyramid)     | 不推荐 | Pyramid 是一个灵活且可扩展的 Web 框架，适用于构建任何规模的 Web 应用程序。                                                                       | 灵活和可扩展，导致上手难度高                                                              |
+| FastAPI | [fastapi](https://github.com/tiangolo/fastapi)   | 推荐  | FastAPI 是一个快速 Web 框架，用于构建 Web 应用程序。                                                                                  | FastAPI 的优点是它具有快速和可扩展的架构，具有许多内置的功能和特性，如自动文档（swagger）、自动验证和序列化等。             | 
 
 ### Django：
 
@@ -51,3 +52,8 @@ uwsgi --http :9090 --wsgi-file foobar.py
 1. Pyramid 是一个灵活且可扩展的 Web 框架，适用于构建任何规模的 Web 应用程序。
 2. 它提供了一个简单的核心，并支持选择性地添加更高级的功能，如 URL 路由、视图处理、会话管理等。
 3. Pyramid 的设计理念是松散耦合的组件化架构，使开发人员能够根据需求选择和组合所需的功能。
+
+### FastAPI:
+1. 高性能：FastAPI 基于 Starlette 核心和 Pydantic 模型，性能非常出色，可以与 NodeJS 和 Go 相媲美。
+2. 内置API文档：内置了两个自动生成的交互式 API 文档界面：Swagger UI 和 ReDoc。这使得开发者和用户可以轻松地测试和理解 API。
+3. 异步支持：强大的异步支持，允许使用 async 和 await，从而提高 I/O 密集型应用的性能。
