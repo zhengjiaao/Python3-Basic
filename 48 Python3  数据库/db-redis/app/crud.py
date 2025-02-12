@@ -3,8 +3,7 @@ import uuid
 import time
 
 # 创建Redis连接
-# redis_client = redis.StrictRedis(host='localhost', port=6379, db=0, decode_responses=True)
-redis_client = redis.StrictRedis(host='192.168.1.60', port=31398, db=8, password='r0&3o6^NtJOZ', decode_responses=True)
+redis_client = redis.StrictRedis(host='localhost', port=6379, db=0, decode_responses=True)
 
 
 # 增加（Set）
