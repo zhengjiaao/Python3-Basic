@@ -79,3 +79,9 @@ def delete_user(user_id: int, db: Session = Depends(get_db)):
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_user
+
+
+if __name__ == '__main__':
+    import uvicorn
+
+    uvicorn.run(app='main:app', host="0.0.0.0", port=8000, reload=False, workers=1)
