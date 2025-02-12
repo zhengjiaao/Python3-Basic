@@ -179,3 +179,9 @@ async def delete_file_endpoint(id: str, db: AsyncIOMotorClient = Depends(get_db)
     if file_delete is None:
         raise HTTPException(status_code=404, detail="File not found")
     return file_delete
+
+
+if __name__ == '__main__':
+    import uvicorn
+
+    uvicorn.run(app='main:app', host="0.0.0.0", port=8000, reload=False, workers=1)

@@ -45,3 +45,9 @@ def delete_key(key: str):
     print(key)
     crud.delete_key(key)
     # return {"key": key} # 默认返回 null
+
+
+if __name__ == '__main__':
+    import uvicorn
+
+    uvicorn.run(app='main:app', host="0.0.0.0", port=8000, reload=False, workers=1)
