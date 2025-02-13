@@ -30,6 +30,6 @@ python -m venv .venv
 3.安装Python依赖
 
 ```shell
-cd example-frontend
+cd example-vue-frontend
 pip install -r requirements.txt
 ```
