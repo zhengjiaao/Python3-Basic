@@ -1,4 +1,7 @@
-# Django
+# Django Web框架
+
+- [Django](https://www.djangoproject.com/)
+- [drf-yasg API官网](https://drf-yasg.readthedocs.io/en/stable/)
 
 ## Django 安装
 
