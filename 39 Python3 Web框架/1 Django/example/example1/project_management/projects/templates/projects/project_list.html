@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project List</title>
+</head>
+<body>
+    <h1>Project List</h1>
+    <a href="{% url 'project_create' %}">Create New Project</a>
+    <ul>
+        {% for project in page_obj %}
+            <li>
+                <a href="{% url 'project_detail' pk=project.pk %}">{{ project.name }}</a>
+                <a href="{% url 'project_update' pk=project.pk %}">Edit</a>
+                <a href="{% url 'project_delete' pk=project.pk %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <div>
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>

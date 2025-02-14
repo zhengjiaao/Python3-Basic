@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project Detail</title>
+</head>
+<body>
+    <h1>Project Detail</h1>
+    <p>Name: {{ project.name }}</p>
+    <p>Description: {{ project.description }}</p>
+    <p>Start Date: {{ project.start_date }}</p>
+    <p>End Date: {{ project.end_date }}</p>
+    <p>Owner: {{ project.owner.username }}</p>
+    <a href="{% url 'project_list' %}">Back to list</a>
+    <a href="{% url 'project_update' pk=project.pk %}">Edit</a>
+    <a href="{% url 'project_delete' pk=project.pk %}">Delete</a>
+    <h2>Tasks</h2>
+    <a href="{% url 'task_create' project_pk=project.pk %}">Create New Task</a>
+    <ul>
+        {% for task in project.tasks.all %}
+            <li>
+                <a href="{% url 'task_detail' project_pk=project.pk task_pk=task.pk %}">{{ task.name }}</a>
+                <a href="{% url 'task_update' project_pk=project.pk task_pk=task.pk %}">Edit</a>
+                <a href="{% url 'task_delete' project_pk=project.pk task_pk=task.pk %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

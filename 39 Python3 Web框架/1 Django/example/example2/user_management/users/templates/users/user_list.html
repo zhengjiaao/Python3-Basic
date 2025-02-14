@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User List</title>
+</head>
+<body>
+<h1>User List</h1>
+<a href="{% url 'user_create' %}">Create New User</a>
+<ul>
+    {% for user in page_obj %}
+    <li>
+        <a href="{% url 'user_detail' pk=user.pk %}">{{ user.username }}</a>
+        <a href="{% url 'user_update' pk=user.pk %}">Edit</a>
+        <a href="{% url 'user_delete' pk=user.pk %}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+<div>
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</body>
+</html>

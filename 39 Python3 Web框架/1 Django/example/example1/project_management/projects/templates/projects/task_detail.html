@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Detail</title>
+</head>
+<body>
+    <h1>Task Detail</h1>
+    <p>Name: {{ task.name }}</p>
+    <p>Description: {{ task.description }}</p>
+    <p>Due Date: {{ task.due_date }}</p>
+    <p>Completed: {{ task.completed }}</p>
+    <p>Assigned To: {{ task.assigned_to.username }}</p>
+    <a href="{% url 'task_list' project_pk=task.project.pk %}">Back to Task List</a>
+    <a href="{% url 'task_update' project_pk=task.project.pk task_pk=task.pk %}">Edit</a>
+    <a href="{% url 'task_delete' project_pk=task.project.pk task_pk=task.pk %}">Delete</a>
+</body>
+</html>
